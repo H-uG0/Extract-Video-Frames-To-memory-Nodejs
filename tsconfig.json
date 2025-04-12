@@ -17,6 +17,12 @@
     "verbatimModuleSyntax": true,
     "incremental": true
   },
-  "include": ["*.ts"],
+  "include": [
+    "*.ts",
+    "example.ts",
+    "src/lib/ExtractFrames.ts",
+    "src/lib/vidMetadata.ts",
+    "src/index.ts"
+  ],
   "exclude": ["node_modules", "dist"]
 }

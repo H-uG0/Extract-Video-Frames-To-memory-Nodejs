@@ -1,4 +1,4 @@
-import readVideo from "./script.ts";
+import readVideo from "./src/index.ts";
 
 const videoPath = "./video.mp4";
 // return Frames in array of buffers [buffer<> , buffer<> ,.....]

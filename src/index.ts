@@ -1,8 +1,8 @@
 import * as fs from "fs";
 import ffmpeg from "fluent-ffmpeg";
 import ffmpegInstaller from "@ffmpeg-installer/ffmpeg";
-import ExtractFrames from "./ExtractFrames.ts";
-import getVideoWH from "./vidMetadata.ts";
+import ExtractFrames from "./lib/ExtractFrames.ts";
+import getVideoWH from "./lib/vidMetadata.ts";
 
 // Set ffmpeg path
 ffmpeg.setFfmpegPath(ffmpegInstaller.path);
