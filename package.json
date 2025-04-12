@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "a script that extracts video frames to memory using ffmpeg and nodejs",
   "main": "script.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --experimental-strip-types example.ts"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,13 @@
   },
   "homepage": "https://github.com/ahmedmagdy11/Extract-Video-Frames-To-memory-Nodejs#readme",
   "dependencies": {
-    "@ffmpeg-installer/ffmpeg": "^1.0.20",
-    "fluent-ffmpeg": "^2.1.2"
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@types/ffmpeg": "^1.0.7",
+    "@types/fluent-ffmpeg": "^2.1.27",
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-installer": "^1.0.2",
+    "fluent-ffmpeg": "^2.1.3",
+    "tsc": "^2.0.4",
+    "typescript": "^5.8.3"
   }
 }
