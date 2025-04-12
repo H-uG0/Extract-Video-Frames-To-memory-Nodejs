@@ -1,5 +1,5 @@
 {
-  "name": "extractvideoframes",
+  "name": "extract-video-frames",
   "version": "1.0.0",
   "description": "a script that extracts video frames to memory using ffmpeg and nodejs",
   "main": "dist/index.js",
