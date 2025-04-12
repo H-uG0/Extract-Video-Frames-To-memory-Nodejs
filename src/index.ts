@@ -12,18 +12,14 @@ interface VideoDimensions {
   height: number;
 }
 
-interface FrameData {
-  [key: string]: any;
-}
-
-const readVideo = async (path: string): Promise<FrameData[]> => {
+const readVideo = async (path: string): Promise<Buffer[]> => {
   const { width, height }: VideoDimensions = await getVideoWH(path);
   const HW: string = `${height}x${width}`;
   const logStream: fs.WriteStream = fs.createWriteStream("./logFile.log");
 
-  const frames: FrameData[] = [];
+  const frames: Buffer[] = [];
 
-  return new Promise<FrameData[]>((resolve, reject) => {
+  return new Promise<Buffer[]>((resolve, reject) => {
     const command = ffmpeg(path)
       .videoCodec("mjpeg")
       .size(HW)
@@ -43,7 +39,7 @@ const readVideo = async (path: string): Promise<FrameData[]> => {
 
     // Process frames
     const frameProcessor = new ExtractFrames("FFD8FF");
-    frameProcessor.on("data", (data: FrameData) => {
+    frameProcessor.on("data", (data: Buffer) => {
       frames.push(data);
     });
 
