@@ -1,14 +1,12 @@
 # Extract-Video-Frames-To-memory-Nodejs
-a script that extracts video frames to memory using ffmpeg and nodejs 
+
+A function to read a video as an array of buffer ( one buffer per frame )
 
 ## Installation
 
-you should have [ffmpeg](https://www.ffmpeg.org/download.html) installed on your OS.<br>
-if you don't want to build upon this project just 
-copy and paste it into your main project directory<br>
-open terminal type `npm i @ffmpeg-installer/ffmpeg fluent-ffmpeg `
+    npm i extract-video-frames-ts
 
-## Usage 
+## Usage
 
-explained in example.js how to use it
-
+    import readVideo from "extract-video-frames-ts"
+    readVideo('./video.mp4').then((data)=>console.log(data.length))

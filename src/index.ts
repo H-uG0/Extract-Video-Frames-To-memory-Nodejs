@@ -2,24 +2,24 @@ import * as fs from "fs";
 import ffmpeg from "fluent-ffmpeg";
 import ffmpegInstaller from "@ffmpeg-installer/ffmpeg";
 import ExtractFrames from "./lib/ExtractFrames.ts";
-import getVideoWH from "./lib/vidMetadata.ts";
+import GetVideoMetadata, { type VideoMetadata } from "./lib/vidMetadata.ts";
 
 // Set ffmpeg path
 ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 
-interface VideoDimensions {
-  width: number;
-  height: number;
-}
+type ExtractedVideoData = {
+  frames: { timestamp: number; frame: Buffer }[];
+  metadata: VideoMetadata;
+};
 
-const readVideo = async (path: string): Promise<Buffer[]> => {
-  const { width, height }: VideoDimensions = await getVideoWH(path);
-  const HW: string = `${height}x${width}`;
+const readVideo = async (path: string): Promise<ExtractedVideoData> => {
+  const metadata = await GetVideoMetadata(path);
+  const HW: string = `${metadata.height}x${metadata.width}`;
   const logStream: fs.WriteStream = fs.createWriteStream("./logFile.log");
 
-  const frames: Buffer[] = [];
+  const frames: { timestamp: number; frame: Buffer }[] = [];
 
-  return new Promise<Buffer[]>((resolve, reject) => {
+  return new Promise<ExtractedVideoData>((resolve, reject) => {
     const command = ffmpeg(path)
       .videoCodec("mjpeg")
       .size(HW)
@@ -29,7 +29,10 @@ const readVideo = async (path: string): Promise<Buffer[]> => {
         reject(err);
       })
       .on("end", () => {
-        resolve(frames);
+        resolve({
+          frames,
+          metadata,
+        });
       });
 
     // Pipe stderr to log file
@@ -38,8 +41,8 @@ const readVideo = async (path: string): Promise<Buffer[]> => {
     });
 
     // Process frames
-    const frameProcessor = new ExtractFrames("FFD8FF");
-    frameProcessor.on("data", (data: Buffer) => {
+    const frameProcessor = new ExtractFrames("FFD8FF", metadata.fps);
+    frameProcessor.on("data", (data: { timestamp: number; frame: Buffer }) => {
       frames.push(data);
     });
 

@@ -18,8 +18,7 @@
     "incremental": true
   },
   "include": [
-    "*.ts",
-    "example.ts",
+    "**/*.ts",
     "src/lib/ExtractFrames.ts",
     "src/lib/vidMetadata.ts",
     "src/index.ts"

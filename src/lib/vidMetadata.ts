@@ -1,11 +1,15 @@
 import fluentFfmpeg from "fluent-ffmpeg";
 
-interface VideoDimensions {
+export interface VideoMetadata {
   width: number;
   height: number;
+  fps: number;
+  duration?: number;
+  bitrate?: number;
+  codec?: string;
 }
 
-const GetVideoWH = async (path: string): Promise<VideoDimensions> => {
+const GetVideoMetadata = async (path: string): Promise<VideoMetadata> => {
   return new Promise((resolve, reject) => {
     fluentFfmpeg.ffprobe(
       path,
@@ -26,14 +30,21 @@ const GetVideoWH = async (path: string): Promise<VideoDimensions> => {
           return;
         }
 
-        //console.log("Video dimensions:", videoStream.width, videoStream.height);
-        resolve({
+        const metadata: VideoMetadata = {
           width: videoStream.width,
           height: videoStream.height,
-        });
+          fps: videoStream.r_frame_rate
+            ? parseFloat(videoStream.r_frame_rate)
+            : 0,
+          duration: data.format.duration,
+          bitrate: data.format.bit_rate,
+          codec: videoStream.codec_name,
+        };
+
+        resolve(metadata);
       }
     );
   });
 };
 
-export default GetVideoWH;
+export default GetVideoMetadata;
