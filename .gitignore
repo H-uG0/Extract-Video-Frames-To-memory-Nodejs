@@ -1,3 +1,4 @@
 node_modules
 logFile.log
-./src/video.mp4
+src/video.mp4
+src/example.ts
