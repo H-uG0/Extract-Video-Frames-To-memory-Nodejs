@@ -30,13 +30,16 @@ const GetVideoMetadata = async (path: string): Promise<VideoMetadata> => {
           return;
         }
 
+        // Parse the frame rate correctly
+        const frameRate = videoStream.r_frame_rate
+          ? eval(videoStream.r_frame_rate)
+          : 0;
+
         const metadata: VideoMetadata = {
           width: videoStream.width,
           height: videoStream.height,
-          fps: videoStream.r_frame_rate
-            ? parseFloat(videoStream.r_frame_rate)
-            : 0,
-          duration: data.format.duration,
+          fps: frameRate,
+          duration: Math.round((data.format.duration || 0) * 1000),
           bitrate: data.format.bit_rate,
           codec: videoStream.codec_name,
         };

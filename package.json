@@ -1,12 +1,12 @@
 {
   "name": "extract-video-frames-ts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a script that extracts video frames to memory using ffmpeg and nodejs",
   "main": "./src/index.ts",
   "types": "./src/index.d.ts",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-strip-types example.ts",
+    "test": "node --experimental-strip-types ./src/example.ts",
     "build": "tsc"
   },
   "repository": {

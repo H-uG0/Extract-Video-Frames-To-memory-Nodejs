@@ -31,7 +31,7 @@ class ExtractFrames extends Transform {
       if (end < 0) break; // we haven't got the whole frame yet
 
       const frameData = this.buffer.subarray(start, end);
-      const timestamp = this.frameCount / this.fps; // Calculate timestamp
+      const timestamp = Math.round((this.frameCount / this.fps) * 1000); // Calculate timestamp
       this.push({ timestamp, frame: frameData }); // emit a frame with timestamp
 
       this.buffer = this.buffer.subarray(end); // remove frame data from buffer

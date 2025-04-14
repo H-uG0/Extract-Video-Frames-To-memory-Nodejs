@@ -9,7 +9,7 @@ ffmpeg version N-92722-gf22fcd4483 Copyright (c) 2000-2018 the FFmpeg developers
   libswscale      5.  4.100 /  5.  4.100
   libswresample   3.  4.100 /  3.  4.100
   libpostproc    55.  4.100 / 55.  4.100
-Input #0, mov,mp4,m4a,3gp,3g2,mj2, from './public/video.mp4':
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from './src/video.mp4':
   Metadata:
     major_brand     : mp42
     minor_version   : 0
@@ -24,7 +24,7 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from './public/video.mp4':
 Stream mapping:
   Stream #0:0 -> #0:0 (h264 (native) -> mjpeg (native))
 Press [q] to stop, [?] for help
-[swscaler @ 000002b623fd52c0] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 000001aa89fd2200] deprecated pixel format used, make sure you did set range correctly
 Output #0, image2pipe, to 'pipe:1':
   Metadata:
     major_brand     : mp42
@@ -38,8 +38,8 @@ Output #0, image2pipe, to 'pipe:1':
       encoder         : Lavc58.42.102 mjpeg
     Side data:
       cpb: bitrate max/min/avg: 0/0/200000 buffer size: 0 vbv_delay: -1
-frame=   65 fps=0.0 q=24.8 size=    2139kB time=00:00:02.71 bitrate=6464.3kbits/s speed= 5.4x    
-frame=  138 fps=137 q=24.8 size=    3879kB time=00:00:05.75 bitrate=5520.8kbits/s speed=5.71x    
-frame=  178 fps=144 q=24.8 Lsize=    4835kB time=00:00:07.42 bitrate=5334.6kbits/s speed=   6x    
+frame=   78 fps=0.0 q=24.8 size=    2448kB time=00:00:03.25 bitrate=6164.7kbits/s speed=6.47x    
+frame=  166 fps=165 q=24.8 size=    4548kB time=00:00:06.92 bitrate=5381.0kbits/s speed=6.87x    
+frame=  178 fps=165 q=24.8 Lsize=    4835kB time=00:00:07.42 bitrate=5334.6kbits/s speed= 6.9x    
 video:4835kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.000000%
 
